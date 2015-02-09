@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>HTTP STATUS CHECKER</title>
+<meta name="robots" content="NOINDEX,NOFOLLOW">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+{include file='head.inc'}
+</head>
+
+<body>
+{include file='header.inc'}
+    <form action="insert.php" method="post">
+        <input type="hidden" name="filename" value="{$filename}">
+        <button type="submit" name="mode" value="finish">以下の内容で登録する</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>URL or IP Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $line as $ln}
+            <tr>
+                <td>{$ln}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <form action="insert.php" method="post">
+        <input type="hidden" name="filename" value="{$filename}">
+        <button type="submit" name="mode" value="finish">以上の内容で登録する</button>
+    </form>
+{include file='footer.inc'}
+</body>
+</html>

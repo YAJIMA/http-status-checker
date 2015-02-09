@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>HTTP STATUS CHECKER</title>
+<meta name="robots" content="NOINDEX,NOFOLLOW">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+{include file='head.inc'}
+</head>
+
+<body>
+{include file='header.inc'}
+    <h2>登録URL ( IPアドレス )</h2>
+    {if count($lists) gt 1}
+    <button onclick="Javascript:AllChecked(true);">全てにチェック</button>
+    <button onclick="Javascript:AllChecked(false);">チェックを外す</button>
+    {/if}
+    <form method="post" action="results.php" name="form1" id="form1">
+    <button type="submit" name="mode" value="delete"
+    onclick="Javascript:return confirm('チェックされたURLのチェックを終了します。よろしいですか？');return false;">削除</button>
+    <table>
+        <tbody>
+            {foreach $lists as $l}
+            <tr>
+                <td>{$l.target}</td>
+                <td>
+                    <input type="checkbox" name="list_id[]" value="{$l.id}">
+                    
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <button type="submit" name="mode" value="delete"
+    onclick="Javascript:return confirm('チェックされたURLのチェックを終了します。よろしいですか？');return false;">削除</button>
+    </form>
+    {if count($lists) gt 1}
+    <button onclick="Javascript:AllChecked(true);">全てにチェック</button>
+    <button onclick="Javascript:AllChecked(false);">チェックを外す</button>
+    {/if}
+    <script type="text/javascript">
+<!--
+function AllChecked(check){
+    //var check =  document.form.aaa.checked;
+    //alert(document.form1.elements['list_id[]'].length);
+    for (var i=0; i<document.form1.elements['list_id[]'].length; i++){
+        document.form1.elements['list_id[]'][i].checked = check;
+    }
+}
+//-->
+    </script>
+    <h2>チェック履歴</h2>
+    <form method="post" action="results.php" name="form2" id="form2">
+        <button type="submit" name="mode" value="historydelete"
+        onclick="Javascript:return confirm('履歴をすべて削除します。よろしいですか？');return false;">チェック履歴を削除</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>target</th>
+                <th>deleteflg</th>
+                <th>httpstatus</th>
+                <th>message</th>
+                <th>checkdate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $results as $r}
+            <tr>
+                <td>{$r.id}</td>
+                <td><a href="{$r.url}" target="_blank">{$r.target}</a></td>
+                <td>{$r.deleteflg}</td>
+                <td>{$r.httpstatus}</td>
+                <td>{$r.message}</td>
+                <td>{$r.checkdate}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+{include file='footer.inc'}
+</body>
+</html>

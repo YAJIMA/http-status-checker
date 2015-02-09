@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>HTTP STATUS CHECKER</title>
+<meta name="robots" content="NOINDEX,NOFOLLOW">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+{include file='head.inc'}
+</head>
+
+<body>
+{include file='header.inc'}
+    <form action="insert.php" method="post" enctype="multipart/form-data">
+        <label for="csvfile">CSVファイル</label>
+        <input type="file" name="csvfile" id="csvfile">
+        <button type="submit" name="mode" value="confirm">CSVファイルをアップロード</button>
+    </form>
+    <p><a href="sample.csv">サンプルファイル</a>…リンク先を名前をつけて保存して下さい。</p>
+{include file='footer.inc'}
+</body>
+</html>
